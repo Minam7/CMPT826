@@ -1,4 +1,8 @@
+import os
+
+import folium
 import pandas as pd
+from folium.plugins import HeatMap
 
 '''
 Part A: removing users with 50% and 75% battery records
@@ -116,7 +120,37 @@ gps_data = gps_data.loc[gps_data['lon'] < -106.52225319]
 
 records_num, _ = gps_data.shape
 
-print('GPS data size after filtering is ', records_num, 'records.')
+print('GPS data size after filtering is', records_num, 'records.')
 
 # saving data frame as pickle object for future use
 gps_data.to_pickle('data/gps_filter.pkl')
+
+############################################################
+
+'''
+Part C: plotting
+'''
+
+# plotting heatmap for all records
+gps_data = pd.read_pickle('data/gps.pkl')
+
+# creating map
+hmap_data = folium.Map(location=[52.058367, -106.7649138128])
+
+hm_wide = HeatMap(list(zip(gps_data.lat.values, gps_data.lon.values, )), min_opacity=0.2)
+
+hmap_data.add_child(hm_wide)
+
+hmap_data.save(os.path.join('maps', 'all_records_heatmap.html'))
+
+# plotting heatmap for filtered records
+gps_data = pd.read_pickle('data/gps_filter.pkl')
+
+# creating map
+hmap_data = folium.Map(location=[52.058367, -106.7649138128])
+
+hm_wide = HeatMap(list(zip(gps_data.lat.values, gps_data.lon.values)), min_opacity=0.2)
+
+hmap_data.add_child(hm_wide)
+
+hmap_data.save(os.path.join('maps', 'filtered_records_heatmap.html'))

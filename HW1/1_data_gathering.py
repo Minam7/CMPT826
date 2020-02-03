@@ -48,7 +48,7 @@ gps_data.columns = GPSResultSet[0].keys()
 # removing index column from data - 0 for rows and 1 for column
 gps_data = gps_data.drop('index', 1)
 
-# saving data frame as pickle object for future use
+# saving data frame as HDF5 object(because of its size) for future use
 gps_data.to_pickle('data/gps.pkl')
 
 print('fetching gps data completed')
