@@ -89,7 +89,7 @@ print(records_num - gps_filter_lat_low, 'records are removed for latitudes less 
 gps_data_filter_lat = gps_data_filter_lat.loc[gps_data_filter_lat['lat'] < 52.214609]
 gps_filter_lat_high, _ = gps_data_filter_lat.shape
 
-print(records_num - gps_filter_lat_high - gps_filter_lat_low, 'records are removed for latitudes more than 52.214608')
+print(records_num - gps_filter_lat_high, 'records are removed for latitudes more than 52.214608')
 
 '''
 Longitude filtering
@@ -104,8 +104,7 @@ print(records_num - gps_filter_lon_low, 'records are removed for longitudes less
 gps_data_filter_lon = gps_data_filter_lon.loc[gps_data_filter_lon['lon'] < -106.52225319]
 gps_filter_lon_high, _ = gps_data_filter_lon.shape
 
-print(records_num - gps_filter_lon_high - gps_filter_lon_low,
-      'records are removed for latitudes more than -106.52225318')
+print(records_num - gps_filter_lon_high, 'records are removed for latitudes more than -106.52225318')
 
 ############################################################
 # executing all filters to a final data frame
