@@ -7,8 +7,8 @@ connection = engine.connect()
 metadata = db.MetaData()
 
 '''
-
 Obtaining battery table
+'''
 
 # Equivalent to 'SELECT * FROM battery
 battery = db.Table('battery', metadata, autoload=True, autoload_with=engine)
@@ -29,8 +29,6 @@ battery_data = battery_data.drop('index', 1)
 battery_data.to_pickle('data/battery.pkl')
 
 print('fetching battery data completed')
-
-'''
 
 '''
 Obtaining gps table
