@@ -118,3 +118,6 @@ gps_data = gps_data.loc[gps_data['lon'] < -106.52225319]
 records_num, _ = gps_data.shape
 
 print('GPS data size after filtering is ', records_num, 'records.')
+
+# saving data frame as pickle object for future use
+gps_data.to_pickle('data/gps_filter.pkl')
